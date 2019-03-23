@@ -87,7 +87,7 @@ def check_proof(p_f, k_f):
 
 G, g, sk = setup(1024)
 
-NUMBER_OF_BLOCKS = 4
+NUMBER_OF_BLOCKS = 1
 f = generate_f()
 
 # pdb.set_trace() ### BREAKPOINT ### 
@@ -97,7 +97,7 @@ pdb.set_trace() ### BREAKPOINT ###
 
 Tf = generate_tag_block(poly, f)
 
-pdb.set_trace() ### BREAKPOINT ###
+# pdb.set_trace() ### BREAKPOINT ###
 
 k_f, H = generate_challenge(G, poly)
 
