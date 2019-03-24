@@ -1,10 +1,10 @@
 import hashlib
 import functools
-
+import pdb
+from charm.toolbox.integergroup import integer
 
 def ID(x):
-	x = x.encode('utf-8')
-	return hashlib.sha1(x).hexdigest()
+	return hashlib.sha1(str(x).encode('utf-8')).hexdigest()
 
 
 def product(l):
@@ -12,13 +12,17 @@ def product(l):
 
 
 def LI_EXP(x, phi):
-	# x - punkt w ktorym liczymy 
-	# A = (m_i, g**r) - phi
-	value = 0.0
+	return product(
+        grLx ** product((x - mj) / (m - mj) for mj, _ in phi if mj != m)
+        for m, grLx in phi
+		)
 
+
+def LI_EXP_no_lambda(x, phi, G):
+	value = integer(1, G.q)
 	for m, grLx in phi:
-		exp = product((x - m_j) / (m - m_j) for m_j, _ in phi if m != m_j) 
-		grLx = grLx ** exp
-		value = value * grLx
-	return value
-
+		exp = product((x - m_j) / (m - m_j) for m_j, _ in phi if m_j != m)
+		temp = grLx ** exp
+		temp = integer(temp, G.q)
+		value = integer(value * temp, G.q)
+	return integer(value, G.q)
