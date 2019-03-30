@@ -15,12 +15,6 @@ def setup(security_parameter):
 
 
 def generate_f(n, z, NUMBER_OF_BLOCKS):
-	# f = []
-	# for i in range(NUMBER_OF_BLOCKS):
-	# 	m = integer(random.randrange(2 ** n), G.q)
-	# 	f.append(m)
-	# return f
-
 	return [integer(random.randrange(2 ** n), G.q) for _ in range(z)]
 
 

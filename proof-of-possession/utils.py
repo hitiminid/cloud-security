@@ -3,6 +3,7 @@ import functools
 import pdb
 from charm.toolbox.integergroup import integer
 
+
 def ID(x):
 	return hashlib.sha1(str(x).encode('utf-8')).hexdigest()
 
