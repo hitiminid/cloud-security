@@ -6,9 +6,9 @@ from charm.toolbox.integergroup import IntegerGroupQ, integer
 
 
 RSA_LEN = 1024
-
 NUMBER_OF_MESSAGES = 1000
 SECURITY_PARAM = 20
+
 G = IntegerGroupQ()
 G.paramgen(SECURITY_PARAM)
 

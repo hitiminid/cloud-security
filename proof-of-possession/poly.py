@@ -1,7 +1,7 @@
 import pdb
 from functools import reduce
 
-class Polynomial():
+class Polynomial:
 
 	def __init__(self, coefficients):
 		self.coefficients = coefficients
