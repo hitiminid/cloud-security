@@ -14,6 +14,27 @@ N = 127
 g = G.random()
 
 
+def generate_sets(number_of_mutual):
+
+    mutual_elements = generate_elements(number_of_mutual)
+
+    X = generate_elements(X_SIZE)
+    Y = [e for e in generate_elements(Y_SIZE) if e not in X]
+
+    X += mutual_elements
+    Y += mutual_elements
+
+    # shuffle sets
+    # random.shuffle(X)
+    # random.shuffle(Y)
+
+    return X, Y, mutual_elements
+
+
+def generate_elements(number_of_elements):
+    return [g ** G.random() for _ in range(number_of_elements)]
+
+
 def generate_Gs(X):
 
     # hash each element of the set
@@ -50,33 +71,12 @@ def generate_As(Hs, a):
     return As
 
 
-def generate_sets(number_of_mutual):
-    mutual_elements = generate_elements(number_of_mutual)
-
-    print(mutual_elements)
-    X = generate_elements(X_SIZE)
-    Y = [e for e in generate_elements(Y_SIZE) if e not in X]
-
-    X += mutual_elements
-    Y += mutual_elements
-
-    # shuffle sets
-    # random.shuffle(X)
-    # random.shuffle(Y)
-
-    return X, Y
-
-
-def generate_elements(number_of_elements):
-    return [g ** G.random() for _ in range(number_of_elements)]
-
-
 def main():
 
     number_of_mutual = 2
 
     # generate sets
-    X, Y = generate_sets(2)
+    X, Y, mutual = generate_sets(2)
 
     # generate Gs
     Gs, a = generate_Gs(X)
@@ -86,13 +86,14 @@ def main():
 
     # generate As
     As = generate_As(Hs, a)
-    # print(X, Y)
+    
+    # A side compares
     a_mutual = [el1 for el1, el2 in zip(X, Bs) if el2 in As]
-    print(a_mutual)
-    # pdb.set_trace()
 
     # B side compares
+    b_mutual = [el1 for el1, el2 in zip(Y, As) if el2 in Bs]
 
+    assert a_mutual == b_mutual == mutual 
 
 if __name__ == "__main__":
     main()
