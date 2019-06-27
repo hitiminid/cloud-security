@@ -5,8 +5,8 @@ from charm.schemes.pkenc.pkenc_rsa import RSA
 from charm.toolbox.integergroup import IntegerGroupQ, integer
 
 
-RSA_LEN = 1024
-NUMBER_OF_MESSAGES = 1000
+RSA_LEN = 2048
+NUMBER_OF_MESSAGES = 20
 SECURITY_PARAM = 20
 
 G = IntegerGroupQ()

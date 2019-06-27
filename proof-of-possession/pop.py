@@ -34,6 +34,7 @@ def create_poly(fid, sk, z):
     for i in range(0, len(coefficients)):
         while coefficients[i] == 0:
             coefficients[i] = integer(random.randrange(G.q), G.q)
+
     return Polynomial(coefficients)
 
 
@@ -55,7 +56,7 @@ def generate_challenge(G, g, sk, fid, z):
 def generate_proof(Tf, xc, g, r, poly, H):
     gr, xc, grLf0 = H
     phi = generate_phi_set(grLf0, Tf, gr, poly)
-    P_f = utils.LI_EXP(xc, phi)  # P_f = utils.LI_EXP_no_lambda(xc, phi, G)
+    P_f = utils.LI_EXP(xc, phi)
     return P_f
 
 
@@ -69,17 +70,13 @@ def generate_phi_set(grLf0, Tf, gr, poly):
 
 
 def check_proof(p_f, k_f):
-    # print(f"P_f = {p_f}")
-    # print(f"K_f = {k_f}")
     return p_f == k_f
-
-##############################################
 
 
 n = 256
 G, g, sk = setup(1024)
-z = 1
-NUMBER_OF_BLOCKS = 1
+z = 5
+NUMBER_OF_BLOCKS = 5
 f = generate_f(n, z, NUMBER_OF_BLOCKS)
 
 

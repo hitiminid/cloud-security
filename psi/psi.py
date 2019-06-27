@@ -76,7 +76,7 @@ def main():
     number_of_mutual = 2
 
     # generate sets
-    X, Y, mutual = generate_sets(2)
+    X, Y, mutual = generate_sets(number_of_mutual)
 
     # generate Gs
     Gs, a = generate_Gs(X)
@@ -86,14 +86,15 @@ def main():
 
     # generate As
     As = generate_As(Hs, a)
-    
+
     # A side compares
     a_mutual = [el1 for el1, el2 in zip(X, Bs) if el2 in As]
 
     # B side compares
     b_mutual = [el1 for el1, el2 in zip(Y, As) if el2 in Bs]
 
-    assert a_mutual == b_mutual == mutual 
+    assert a_mutual == b_mutual == mutual
+
 
 if __name__ == "__main__":
     main()
